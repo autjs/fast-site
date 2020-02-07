@@ -49,8 +49,6 @@ function compiler(obj) {
 		}
 	})
 
-	// 填充数据
-	console.log(obj.js)
 
 	for (let key in obj.js) {
 		if (obj.js.hasOwnProperty(key)) {
@@ -58,25 +56,27 @@ function compiler(obj) {
 			if(typeof element == 'string' || typeof element == 'number' || typeof element =='boolean') {
 				$('body').html($('body').html().replace(new RegExp(`{{${key}}}`,'g'), element))
 			}else {
-				console.log(key)
 				if($(`[ccid]`).length) {
-					let el = $(`[ccid]`)[0]
-					if(el.attribs['ccid'] === key) {
-						if(element.for) {
-							for(let forI in element.for) {
-								let cloneEl = $(el).clone()
-								cloneEl.html(cloneEl.html().replace(new RegExp(`{{key}}`,'g'), forI))
-								cloneEl.html(cloneEl.html().replace(new RegExp(`{{value}}`,'g'), element.for[forI]))
-								$(el).parent().append(cloneEl)
+					$(`[ccid]`).each((index, el) => {
+						// console.log(`el====${el}`)
+						if(el.attribs['ccid'] === key) {
+							if(element.for) {
+								console.log(`检测到有for key是${key} 开始处理`)
+								for(let forI in element.for) {
+									let cloneEl = $(el).clone()
+									cloneEl.html(cloneEl.html().replace(new RegExp(`{{key}}`,'g'), forI))
+									cloneEl.html(cloneEl.html().replace(new RegExp(`{{value}}`,'g'), element.for[forI]))
+									$(el).parent().append(cloneEl)
+								}
+							}
+							$(el).remove()
+
+							// 处理事件
+							if(element.click) {
+								obj.evts.push({type:'click', target: key, handler: element.click})
 							}
 						}
-						$(el).remove()
-
-						// 处理事件
-						if(element.click) {
-							obj.evts.push({type:'click', target: key, handler: element.click})
-						}
-					}
+					})
 				}
 			}
 		}
