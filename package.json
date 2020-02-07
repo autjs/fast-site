@@ -1,6 +1,6 @@
 {
   "name": "@cn.coder/fast-site",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "node-cli.js",
   "directories": {
