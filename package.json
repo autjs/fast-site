@@ -1,0 +1,26 @@
+{
+  "name": "@cn.coder/fast-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node-cli.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs-extra": "^8.1.0",
+    "shelljs": "^0.8.3",
+    "uuid": "^3.4.0",
+    "watch": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "fs":"node-cli.js"
+  }
+}

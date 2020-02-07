@@ -1,0 +1,13 @@
+
+.title1 {
+	color: #f00;
+}
+
+.title2 {
+	color: #00f;
+}
+
+ul li {
+	cursor: pointer;
+	line-height: 30px;
+}
